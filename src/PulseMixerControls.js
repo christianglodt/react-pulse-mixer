@@ -81,14 +81,14 @@ function PulseMixerControls(props) {
               <CompareArrowsIcon/>
             </ToggleButton>
             <br/>
-            {group.groupName}
+            <span className='capitalize'>{group.groupName}</span>
             </>
             }
           </div>
           <div key={index} className='SliderGroupInner'>
             { group.channels.map((channel, index) => (
               <div className='SliderBox' key={index}>
-                <div>{channel.displayName}</div>
+                <div className="capitalize">{channel.displayName}</div>
                 <Slider className='VolumeSlider' orientation='vertical' min={0} max={100} value={channel.volume} onChange={(event, value) => onChannelChanged(sink, group, channel, value / 100)}/>
                 <div>{Number(channel.volume).toFixed(0)}%</div>
               </div>
