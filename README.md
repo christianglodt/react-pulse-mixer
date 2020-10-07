@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -66,3 +67,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+=======
+# react-pulse-mixer
+A simple React-based mobile SPA to change volume levels of PulseAudio sinks using rest-pulse-mixer as a backend
+>>>>>>> 5b438ad411419b5c062290c4c0096c5166be916d
