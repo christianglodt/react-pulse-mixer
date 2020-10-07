@@ -155,7 +155,7 @@ function App() {
 
                   { !collapsedSinks.includes(sink.sink_id) &&
                   <ListItem>
-                    <PulseMixerControls sink={sink} onChannelChanged={onChannelChanged} storageQualifier={PATH}/>
+                    <PulseMixerControls sink={sink} onChannelChanged={onChannelChanged}/>
                   </ListItem>
                   }
                   <Divider/>
