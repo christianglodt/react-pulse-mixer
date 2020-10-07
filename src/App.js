@@ -84,8 +84,9 @@ function App() {
   return (
     <div className="App">
       <Drawer open={drawerOpen} onClose={toggleDrawer}>
-        <div>
-          <IconButton onClick={toggleDrawer}><MenuIcon/> Sinks</IconButton>
+        <div className="DrawerHeader">
+          <IconButton onClick={toggleDrawer}><MenuIcon className="DrawerIcon"/></IconButton>
+          <div>Sink Selection</div>
         </div>
         <List>
           {
@@ -107,7 +108,10 @@ function App() {
           }
         </List>
       </Drawer>
-      <IconButton onClick={toggleDrawer}><MenuIcon/></IconButton>
+      <div className="DrawerHeader">
+        <IconButton onClick={toggleDrawer}><MenuIcon className="DrawerIcon"/></IconButton>
+        <span>PulseAudio Mixer</span>
+      </div>
 
       <List>
         {
@@ -129,7 +133,7 @@ function App() {
 
               { !collapsedSinks.includes(sink.sink_index) &&
               <ListItem>
-                <PulseMixerControls sink={sink} onChannelChanged={onChannelChanged}/>
+                <PulseMixerControls sink={sink} onChannelChanged={onChannelChanged} storageQualifier={PATH}/>
               </ListItem>
               }
             </div>
