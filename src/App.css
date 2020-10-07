@@ -9,6 +9,11 @@
     height: 100%;
 }
 
+.App .ServerName {
+    font-size: small;
+    opacity: 0.5;
+}
+
 .App .LoadingProgress {
     height: 100%;
     display: flex;

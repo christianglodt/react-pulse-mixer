@@ -130,7 +130,7 @@ function App() {
           <AppBar position="static">
             <Toolbar>
               <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer}><MenuIcon /></IconButton>
-              <Typography variant="h6">PulseAudio Mixer</Typography>
+              <Typography variant="h6">PulseAudio Mixer <span className='ServerName'>{sinks[0].sink_id.split('|')[0]}</span></Typography>
             </Toolbar>
           </AppBar>
 
