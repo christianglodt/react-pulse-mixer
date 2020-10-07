@@ -45,7 +45,7 @@ function PulseMixerControls(props) {
 
   const channelGroups = findChannelGroups(channelObjs);
 
-  const [joinedGroups, setJoinedGroups] = useJsonLocalStorage(`${props.storageQualifier}-sink-${sink.sink_index}-joined-groups`, []);
+  const [joinedGroups, setJoinedGroups] = useJsonLocalStorage(`${props.storageQualifier}-sink-${sink.sink_id}-joined-groups`, []);
 
   const onGroupJoinedToggled = React.useCallback(group => {
     if (joinedGroups.includes(group.groupName)) {

@@ -58,28 +58,28 @@ function App() {
   const [collapsedSinks, setCollapsedSinks] = useJsonLocalStorage(`react-pulse-mixer-${PATH}-collapsed-sinks`, []);
 
   const toggleSinkSelected = React.useCallback((sink) => {
-    if (selectedSinks.includes(sink.sink_index)) {
-      setSelectedSinks(selectedSinks.filter(i => i !== sink.sink_index));
+    if (selectedSinks.includes(sink.sink_id)) {
+      setSelectedSinks(selectedSinks.filter(i => i !== sink.sink_id));
     } else {
-      setSelectedSinks([...selectedSinks, sink.sink_index]);
+      setSelectedSinks([...selectedSinks, sink.sink_id]);
     }
   }, [selectedSinks, setSelectedSinks]);
 
   const toggleSinkCollapsed = React.useCallback((sink) => {
-    if (collapsedSinks.includes(sink.sink_index)) {
-      setCollapsedSinks(collapsedSinks.filter(i => i !== sink.sink_index));
+    if (collapsedSinks.includes(sink.sink_id)) {
+      setCollapsedSinks(collapsedSinks.filter(i => i !== sink.sink_id));
     } else {
-      setCollapsedSinks([...collapsedSinks, sink.sink_index]);
+      setCollapsedSinks([...collapsedSinks, sink.sink_id]);
     }
   }, [collapsedSinks, setCollapsedSinks]);
 
   const commitSink = useDebouncedCallback((sink) => {
-    axios.post(`${BACKEND_URL}sink/${sink.sink_index}/channels`, sink.channels);
+    axios.post(`${BACKEND_URL}sink/${sink.sink_id}/channels`, sink.channels);
   }, 250);
 
   const onChannelChanged = React.useCallback((sink, channel, value) => {
     const newSinks = [...sinks];
-    const s = newSinks.find(s => s.sink_index === sink.sink_index);
+    const s = newSinks.find(s => s.sink_id === sink.sink_id);
     const c = s.channels.find(c => Object.keys(c)[0] === channel.name);
     c[channel.name] = value;
     setSinks(newSinks);
@@ -96,7 +96,7 @@ function App() {
       }
       { sinks === null && error === true &&
         <div className='ErrorPage'>
-          <div>An error occurred. Refresh to retry.</div>
+          <div>An error occurred.<br/>Refresh to retry.</div>
           <IconButton className='RefreshButton' onClick={() => window.location.reload()}><RefreshIcon/></IconButton>
         </div>
       }
@@ -113,14 +113,14 @@ function App() {
             <List>
               {
                 sinks.map(sink => (
-                  <ListItem button key={sink.sink_index} onClick={event => toggleSinkSelected(sink)}>
+                  <ListItem button key={sink.sink_id} onClick={event => toggleSinkSelected(sink)}>
                     <ListItemText>{sink['device.description']}</ListItemText>
                     <ListItemSecondaryAction>
                       <IconButton edge="end" onClick={event => toggleSinkSelected(sink)}>
-                        { selectedSinks.includes(sink.sink_index) &&
+                        { selectedSinks.includes(sink.sink_id) &&
                           <StarIcon/>
                         }
-                        { !selectedSinks.includes(sink.sink_index) &&
+                        { !selectedSinks.includes(sink.sink_id) &&
                           <StarBorderIcon/>
                         }
                       </IconButton>
@@ -140,24 +140,24 @@ function App() {
 
           <List>
             {
-              sinks.filter(s => selectedSinks.includes(s.sink_index)).map(sink => (
-                <div key={sink.sink_index}>
+              sinks.filter(s => selectedSinks.includes(s.sink_id)).map(sink => (
+                <div key={sink.sink_id}>
                   <ListItem className='SinkHeader' button onClick={event => toggleSinkCollapsed(sink)}>
                     <ListItemIcon><SpeakerGroupIcon/></ListItemIcon>
                     <ListItemText>{sink['device.description']}</ListItemText>
                     <ListItemSecondaryAction>
                       <IconButton edge="end" onClick={event => toggleSinkCollapsed(sink)}>
-                        { collapsedSinks.includes(sink.sink_index) &&
+                        { collapsedSinks.includes(sink.sink_id) &&
                           <ExpandMoreIcon/>
                         }
-                        { !collapsedSinks.includes(sink.sink_index) &&
+                        { !collapsedSinks.includes(sink.sink_id) &&
                           <ExpandLessIcon/>
                         }
                       </IconButton>
                     </ListItemSecondaryAction>
                   </ListItem>
 
-                  { !collapsedSinks.includes(sink.sink_index) &&
+                  { !collapsedSinks.includes(sink.sink_id) &&
                   <ListItem>
                     <PulseMixerControls sink={sink} onChannelChanged={onChannelChanged} storageQualifier={PATH}/>
                   </ListItem>

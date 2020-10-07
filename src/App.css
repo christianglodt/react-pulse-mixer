@@ -23,6 +23,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
 .App .ErrorPage > .RefreshButton {
@@ -62,4 +63,6 @@
 
 .App .SliderRow .SliderGroup .SliderGroupInner .SliderBox .VolumeSlider {
     height: 300px;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
