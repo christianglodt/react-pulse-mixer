@@ -99,7 +99,7 @@ function App(props) {
       { sinks !== null && error === false &&
         <>
           <Drawer open={drawerOpen} onClose={toggleDrawer}>
-            <AppBar position="static">
+            <AppBar color="transparent" elevation={0} position="static">
               <Toolbar>
                 <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer}><MenuIcon /></IconButton>
                 <Typography variant="h6">Sink Selection</Typography>
