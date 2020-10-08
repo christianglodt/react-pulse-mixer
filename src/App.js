@@ -25,17 +25,15 @@ import axios from 'axios';
 import PulseMixerControls from './PulseMixerControls.js';
 import './App.css';
 
-const BACKEND_URL = 'http://localhost:5000/';
-const PATH = '';
+function App(props) {
 
-function App() {
-
+  const { backendUrl } = props;
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [sinks, setSinks] = React.useState(null);
   const [error, setError] = React.useState(false);
 
   React.useEffect(() => {
-    axios.get(`${BACKEND_URL}sinks`)
+    axios.get(`${backendUrl}sinks`)
     .then(function (response) {
       // handle success
       setSinks(response.data);
@@ -44,7 +42,7 @@ function App() {
       // handle error
       setError(true);
     });
-  }, []);
+  }, [backendUrl]);
 
   const toggleDrawer = React.useCallback(() => {
     setDrawerOpen(!drawerOpen);
@@ -70,7 +68,7 @@ function App() {
   }, [collapsedSinks, setCollapsedSinks]);
 
   const commitSink = useDebouncedCallback((sink) => {
-    axios.post(`${BACKEND_URL}sink/${sink.sink_id}/channels`, sink.channels);
+    axios.post(`${backendUrl}sink/${sink.sink_id}/channels`, sink.channels);
   }, 250);
 
   const onChannelChanged = React.useCallback((sink, channel, value) => {
