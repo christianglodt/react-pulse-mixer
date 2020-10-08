@@ -50,8 +50,8 @@ function App() {
     setDrawerOpen(!drawerOpen);
   }, [drawerOpen, setDrawerOpen]);
 
-  const [selectedSinks, setSelectedSinks] = useJsonLocalStorage(`react-pulse-mixer-${PATH}-selected-sinks`, []);
-  const [collapsedSinks, setCollapsedSinks] = useJsonLocalStorage(`react-pulse-mixer-${PATH}-collapsed-sinks`, []);
+  const [selectedSinks, setSelectedSinks] = useJsonLocalStorage(`react-pulse-mixer-${window.location.pathname}-selected-sinks`, []);
+  const [collapsedSinks, setCollapsedSinks] = useJsonLocalStorage(`react-pulse-mixer-${window.location.pathname}-collapsed-sinks`, []);
 
   const toggleSinkSelected = React.useCallback((sink) => {
     if (selectedSinks.includes(sink.sink_id)) {
