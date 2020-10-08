@@ -35,14 +35,12 @@ function App(props) {
   React.useEffect(() => {
     axios.get(`${backendUrl}sinks`)
     .then(function (response) {
-      // handle success
       setSinks(response.data);
     })
     .catch(function (error) {
-      // handle error
       setError(true);
     });
-  }, [backendUrl]);
+  }, [backendUrl, setSinks, setError]);
 
   const toggleDrawer = React.useCallback(() => {
     setDrawerOpen(!drawerOpen);
