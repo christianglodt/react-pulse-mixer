@@ -66,7 +66,11 @@ function App(props) {
   }, [collapsedSinks, setCollapsedSinks]);
 
   const commitSink = useDebouncedCallback((sink) => {
-    axios.post(`${backendUrl}sink/${sink.sink_id}/channels`, sink.channels);
+    axios.post(`${backendUrl}sink/${sink.sink_id}/channels`, sink.channels)
+    .catch(function (error) {
+      setError(true);
+    });
+
   }, 250);
 
   const onChannelChanged = React.useCallback((sink, channel, value) => {
@@ -86,9 +90,9 @@ function App(props) {
           <CircularProgress/>
         </div>
       }
-      { sinks === null && error === true &&
+      { error === true &&
         <div className='ErrorPage'>
-          <div>An error occurred.<br/>Refresh to retry.</div>
+          <div>An error occurred.</div>
           <IconButton className='RefreshButton' onClick={() => window.location.reload()}><RefreshIcon/></IconButton>
         </div>
       }
