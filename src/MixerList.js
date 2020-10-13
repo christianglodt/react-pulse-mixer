@@ -18,15 +18,15 @@ function MixerList(props) {
 
   const { sinks, selectedSinkIds, onChannelChanged } = props;
 
-  const [collapsedSinks, setCollapsedSinks] = useJsonLocalStorage(`react-pulse-mixer-${window.location.pathname}-collapsed-sinks`, []);
+  const [collapsedSinkIds, setCollapsedSinkIds] = useJsonLocalStorage(`react-pulse-mixer-${window.location.pathname}-collapsed-sinks`, []);
 
   const toggleSinkCollapsed = React.useCallback((sink) => {
-    if (collapsedSinks.includes(sink.sink_id)) {
-      setCollapsedSinks(collapsedSinks.filter(i => i !== sink.sink_id));
+    if (collapsedSinkIds.includes(sink.sink_id)) {
+      setCollapsedSinkIds(collapsedSinkIds.filter(i => i !== sink.sink_id));
     } else {
-      setCollapsedSinks([...collapsedSinks, sink.sink_id]);
+      setCollapsedSinkIds([...collapsedSinkIds, sink.sink_id]);
     }
-  }, [collapsedSinks, setCollapsedSinks]);
+  }, [collapsedSinkIds, setCollapsedSinkIds]);
 
   return (
     <List>
@@ -38,17 +38,17 @@ function MixerList(props) {
               <ListItemText>{sink['device.description']}</ListItemText>
               <ListItemSecondaryAction>
                 <IconButton edge="end" onClick={event => toggleSinkCollapsed(sink)}>
-                  { collapsedSinks.includes(sink.sink_id) &&
+                  { collapsedSinkIds.includes(sink.sink_id) &&
                     <ExpandLessIcon/>
                   }
-                  { !collapsedSinks.includes(sink.sink_id) &&
+                  { !collapsedSinkIds.includes(sink.sink_id) &&
                     <ExpandMoreIcon/>
                   }
                 </IconButton>
               </ListItemSecondaryAction>
             </ListItem>
 
-            <Collapse in={collapsedSinks.includes(sink.sink_id)} timeout="auto" unmountOnExit>
+            <Collapse in={collapsedSinkIds.includes(sink.sink_id)} timeout="auto" unmountOnExit>
               <ListItem>
                 <PulseMixerControls sink={sink} onChannelChanged={onChannelChanged}/>
               </ListItem>
