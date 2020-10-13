@@ -15,7 +15,7 @@ import PulseMixerControls from './PulseMixerControls.js';
 
 function MixerList(props) {
 
-  const { sinks, selectedSinks, onChannelChanged } = props;
+  const { sinks, selectedSinkIds, onChannelChanged } = props;
 
   const [collapsedSinks, setCollapsedSinks] = useJsonLocalStorage(`react-pulse-mixer-${window.location.pathname}-collapsed-sinks`, []);
 
@@ -30,7 +30,7 @@ function MixerList(props) {
   return (
     <List>
       {
-        sinks.filter(s => selectedSinks.includes(s.sink_id)).map(sink => (
+        sinks.filter(s => selectedSinkIds.includes(s.sink_id)).map(sink => (
           <div key={sink.sink_id}>
             <ListItem className='SinkHeader' button onClick={event => toggleSinkCollapsed(sink)}>
               <ListItemIcon><SpeakerGroupIcon/></ListItemIcon>

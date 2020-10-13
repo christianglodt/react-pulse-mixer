@@ -36,15 +36,15 @@ function App(props) {
     setDrawerOpen(!drawerOpen);
   }, [drawerOpen, setDrawerOpen]);
 
-  const [selectedSinks, setSelectedSinks] = useJsonLocalStorage(`react-pulse-mixer-${window.location.pathname}-selected-sinks`, []);
+  const [selectedSinkIds, setSelectedSinkIds] = useJsonLocalStorage(`react-pulse-mixer-${window.location.pathname}-selected-sinks`, []);
 
   const toggleSinkSelected = React.useCallback((sink) => {
-    if (selectedSinks.includes(sink.sink_id)) {
-      setSelectedSinks(selectedSinks.filter(i => i !== sink.sink_id));
+    if (selectedSinkIds.includes(sink.sink_id)) {
+      setSelectedSinkIds(selectedSinkIds.filter(i => i !== sink.sink_id));
     } else {
-      setSelectedSinks([...selectedSinks, sink.sink_id]);
+      setSelectedSinkIds([...selectedSinkIds, sink.sink_id]);
     }
-  }, [selectedSinks, setSelectedSinks]);
+  }, [selectedSinkIds, setSelectedSinkIds]);
 
   const commitSink = useDebouncedCallback((sink) => {
     axios.post(`${backendUrl}sink/${sink.sink_id}/channels`, sink.channels)
@@ -87,7 +87,7 @@ function App(props) {
               </Toolbar>
             </AppBar>
 
-            <SinkSelector sinks={sinks} selectedSinks={selectedSinks} onSelectSink={toggleSinkSelected}/>
+            <SinkSelector sinks={sinks} selectedSinkIds={selectedSinkIds} onSelectSink={toggleSinkSelected}/>
           </Drawer>
 
           <AppBar position="static">
@@ -97,7 +97,7 @@ function App(props) {
             </Toolbar>
           </AppBar>
 
-          <MixerList sinks={sinks} selectedSinks={selectedSinks} onChannelChanged={onChannelChanged}/>
+          <MixerList sinks={sinks} selectedSinkIds={selectedSinkIds} onChannelChanged={onChannelChanged}/>
         </>
       }
     </div>

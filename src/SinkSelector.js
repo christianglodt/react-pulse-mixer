@@ -9,7 +9,7 @@ import StarBorderIcon from '@material-ui/icons/StarBorder';
 
 function SinkSelector(props) {
 
-  const { sinks, selectedSinks, onSelectSink } = props;
+  const { sinks, selectedSinkIds, onSelectSink } = props;
 
   return (
     <List>
@@ -19,10 +19,10 @@ function SinkSelector(props) {
             <ListItemText>{sink['device.description']}</ListItemText>
             <ListItemSecondaryAction>
               <IconButton edge="end" onClick={event => onSelectSink(sink)}>
-                { selectedSinks.includes(sink.sink_id) &&
+                { selectedSinkIds.includes(sink.sink_id) &&
                   <StarIcon/>
                 }
-                { !selectedSinks.includes(sink.sink_id) &&
+                { !selectedSinkIds.includes(sink.sink_id) &&
                   <StarBorderIcon/>
                 }
               </IconButton>
