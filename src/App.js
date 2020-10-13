@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import MenuIcon from '@material-ui/icons/Menu';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import useJsonLocalStorage from 'react-use-json-localstorage';
 import { useDebouncedCallback } from 'use-debounce';
@@ -82,7 +83,7 @@ function App(props) {
           <Drawer open={drawerOpen} onClose={toggleDrawer}>
             <AppBar color="transparent" elevation={0} position="static">
               <Toolbar>
-                <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer}><MenuIcon /></IconButton>
+                <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer}><ArrowBackIcon /></IconButton>
                 <Typography variant="h6">Sink Selection</Typography>
               </Toolbar>
             </AppBar>
