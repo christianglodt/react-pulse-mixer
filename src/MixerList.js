@@ -2,6 +2,7 @@ import React from 'react';
 import List from '@material-ui/core/List';
 import IconButton from '@material-ui/core/IconButton';
 import Divider from '@material-ui/core/Divider';
+import Collapse from '@material-ui/core/Collapse';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -38,23 +39,22 @@ function MixerList(props) {
               <ListItemSecondaryAction>
                 <IconButton edge="end" onClick={event => toggleSinkCollapsed(sink)}>
                   { collapsedSinks.includes(sink.sink_id) &&
-                    <ExpandMoreIcon/>
+                    <ExpandLessIcon/>
                   }
                   { !collapsedSinks.includes(sink.sink_id) &&
-                    <ExpandLessIcon/>
+                    <ExpandMoreIcon/>
                   }
                 </IconButton>
               </ListItemSecondaryAction>
             </ListItem>
 
-            { !collapsedSinks.includes(sink.sink_id) &&
-            <ListItem>
-              <PulseMixerControls sink={sink} onChannelChanged={onChannelChanged}/>
-            </ListItem>
-            }
+            <Collapse in={collapsedSinks.includes(sink.sink_id)} timeout="auto" unmountOnExit>
+              <ListItem>
+                <PulseMixerControls sink={sink} onChannelChanged={onChannelChanged}/>
+              </ListItem>
+            </Collapse>
             <Divider/>
           </div>
-
         ))
       }
     </List>
