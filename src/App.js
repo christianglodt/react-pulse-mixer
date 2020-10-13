@@ -82,7 +82,7 @@ function App(props) {
         <>
           <Drawer open={drawerOpen} onClose={toggleDrawer}>
             <AppBar color="transparent" elevation={0} position="static">
-              <Toolbar>
+              <Toolbar onClick={toggleDrawer}>
                 <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer}><ArrowBackIcon /></IconButton>
                 <Typography variant="h6">Sink Selection</Typography>
               </Toolbar>
