@@ -19,7 +19,7 @@ the corresponding button:
 ![Mixer UI](docs/mixer.png)
 
 The menu button in the toolbar opens the list of available sinks. Only sinks
-that are starred are shown in the mixer UI.
+that are selected are shown in the mixer UI.
 
 ![Sink selection sidebar](docs/sink_selection.png)
 
