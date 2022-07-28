@@ -37,7 +37,7 @@ function App(props) {
     setDrawerOpen(!drawerOpen);
   }, [drawerOpen, setDrawerOpen]);
 
-  const [selectedSinkIds, setSelectedSinkIds] = useLocalStorageState(`react-pulse-mixer-${window.location.pathname}-selected-sinks`, []);
+  const [selectedSinkIds, setSelectedSinkIds] = useLocalStorageState(`react-pulse-mixer-${window.location.pathname}-selected-sinks`, { defaultValue: [] });
 
   const toggleSinkSelected = React.useCallback((sink) => {
     if (selectedSinkIds.includes(sink.sink_id)) {

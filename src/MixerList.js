@@ -18,7 +18,7 @@ function MixerList(props) {
 
   const { sinks, selectedSinkIds, onChannelChanged } = props;
 
-  const [collapsedSinkIds, setCollapsedSinkIds] = useLocalStorageState(`react-pulse-mixer-${window.location.pathname}-collapsed-sinks`, []);
+  const [collapsedSinkIds, setCollapsedSinkIds] = useLocalStorageState(`react-pulse-mixer-${window.location.pathname}-collapsed-sinks`, { defaultValue: [] });
 
   const toggleSinkCollapsed = React.useCallback((sink) => {
     if (collapsedSinkIds.includes(sink.sink_id)) {
