@@ -2,7 +2,7 @@ import React from 'react';
 import Slider from '@material-ui/core/Slider';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import CompareArrowsIcon from '@material-ui/icons/CompareArrows';
-import useJsonLocalStorage from 'react-use-json-localstorage';
+import useLocalStorageState from 'use-local-storage-state';
 
 function findChannelGroups(channelObjs) {
   const groups = {};
@@ -27,7 +27,7 @@ function PulseMixerControls(props) {
 
   const channelGroups = findChannelGroups(channelObjs);
 
-  const [joinedGroups, setJoinedGroups] = useJsonLocalStorage(`sink-${sink.sink_id}-joined-groups`, []);
+  const [joinedGroups, setJoinedGroups] = useLocalStorageState(`sink-${sink.sink_id}-joined-groups`, []);
 
   const onGroupJoinedToggled = React.useCallback(group => {
     if (joinedGroups.includes(group.groupName)) {

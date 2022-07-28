@@ -16,9 +16,8 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
-    "react-use-json-localstorage": "^1.0.0",
-    "react-use-localstorage": "^3.5.3",
-    "use-debounce": "^5.0.1"
+    "use-debounce": "^5.0.1",
+    "use-local-storage-state": "^17.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

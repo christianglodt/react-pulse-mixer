@@ -10,7 +10,7 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import SpeakerGroupIcon from '@material-ui/icons/SpeakerGroup';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import useJsonLocalStorage from 'react-use-json-localstorage';
+import useLocalStorageState from 'use-local-storage-state'
 
 import PulseMixerControls from './PulseMixerControls.js';
 
@@ -18,7 +18,7 @@ function MixerList(props) {
 
   const { sinks, selectedSinkIds, onChannelChanged } = props;
 
-  const [collapsedSinkIds, setCollapsedSinkIds] = useJsonLocalStorage(`react-pulse-mixer-${window.location.pathname}-collapsed-sinks`, []);
+  const [collapsedSinkIds, setCollapsedSinkIds] = useLocalStorageState(`react-pulse-mixer-${window.location.pathname}-collapsed-sinks`, []);
 
   const toggleSinkCollapsed = React.useCallback((sink) => {
     if (collapsedSinkIds.includes(sink.sink_id)) {

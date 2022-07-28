@@ -8,7 +8,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import MenuIcon from '@material-ui/icons/Menu';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import RefreshIcon from '@material-ui/icons/Refresh';
-import useJsonLocalStorage from 'react-use-json-localstorage';
+import useLocalStorageState from 'use-local-storage-state';
 import { useDebouncedCallback } from 'use-debounce';
 import axios from 'axios';
 
@@ -37,7 +37,7 @@ function App(props) {
     setDrawerOpen(!drawerOpen);
   }, [drawerOpen, setDrawerOpen]);
 
-  const [selectedSinkIds, setSelectedSinkIds] = useJsonLocalStorage(`react-pulse-mixer-${window.location.pathname}-selected-sinks`, []);
+  const [selectedSinkIds, setSelectedSinkIds] = useLocalStorageState(`react-pulse-mixer-${window.location.pathname}-selected-sinks`, []);
 
   const toggleSinkSelected = React.useCallback((sink) => {
     if (selectedSinkIds.includes(sink.sink_id)) {
